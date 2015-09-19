@@ -56,17 +56,14 @@
           
     <div>
 
-      <input type='text' id='emailInput' placeholder='Email'>
-      <input type='username' id='usernameInput' placeholder='Username'>
-      <input type='password' id='passwordInput' placeholder='Password'>
-      <select id="profileInput">
+      <p><input type='text' id='emailInput' placeholder='Email'></p>
+      <p><input type='password' id='passwordInput' placeholder='Password'></p>
+      <p><select id="profileInput">
         <option value="staff">Staff</option>
         <option value="student" selected="selected">Student</option>
       </select>
-      <button onclick="createAccount()" type="button" class="btn btn-primary">Create account!</button>
-
-      <br><h1>Debug area! Don't worry, will be fixed soon!</h1><br>
-      <button onclick="retrieveUsers()" type="button" class="btn btn-primary">Retrieve users!</button>
+      </p>
+      <p><button onclick="createAccount()" type="button" class="btn btn-primary">Create account!</button></p>
     </div>
 
 </body>
@@ -86,20 +83,10 @@
         console.log("User is logged out");
       }
 
-      function retrieveUsers(){
-        usersRef.on("value", function(snapshot) {
-          console.log(snapshot.val());
-        }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });
-      }
-
-
       function createAccount(){
         console.log('Creating account...');
 
         var emailIn = $('#emailInput').val();
-        var userIn = $('#usernameInput').val();
         var passwordIn = $('#passwordInput').val();
         var e = document.getElementById("profileInput");
         var profileIn = e.options[e.selectedIndex].value;
@@ -114,9 +101,8 @@
             console.log("Successfully created user account with uid:", userData.uid);
 
             var profileRef = usersRef.child(profileIn);
-            var newUserRef = profileRef.child(userIn);
 
-            newUserRef.set({
+            profileRef.push({
               email: emailIn
             });
 

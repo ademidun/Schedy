@@ -28,6 +28,7 @@
       <div id="header">
       		<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
             <h1 style="color: black !important"> Calendar Plus</h1>
+            <button onclick="logout()" type="button" class="btn btn-primary"> Log out</button>
             
             <p id="date"></p> 
             <ul class="nav nav-pills nav-justified">
@@ -49,38 +50,28 @@
     <div id="content">
       <h1 class="home-title" style="color: white !important"> I am a ... </h1>
              <div id="signin" class="container">
+                <input type='text' id='emailInput' placeholder='Email'>
+                <input type='password' id='passwordInput' placeholder='Password'>
                 <div class="row">
                     <div class="col-sm-2 col-sm-offset-5">
-                        <a href= "StaffPage.html"> <button type="button" class="btn btn-primary"> Staff</button> </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-2 col-sm-offset-5">
-                        <a href="StudentPage.html"> <button id="signup" type="button" class="btn btn-primary"> Student</button> </a>
+                        <button onclick="submitStaff()" type="button" class="btn btn-primary">Staff</button>
+                        <button onclick="submitStudent()" type="button" class="btn btn-primary">Student</button>
+                        Not a member yet? <a href="sign_up.html">Sign up now!</a>
                     </div>
                 </div>
              </div>
-    </div>
-
-    <div>
-    	<br><h1>Debug area! Don't worry, will be fixed soon!</h1><br>
-    	<input type='text' id='emailInput' placeholder='Email'>
-	    <input type='password' id='passwordInput' placeholder='Password'>
-	    <button onclick="submitStaff()" type="button" class="btn btn-primary"> Staff</button>
-	    <button onclick="submitStudent()" type="button" class="btn btn-primary"> Student</button>
-	    <button onclick="logout()" type="button" class="btn btn-primary"> Log out</button>
     </div>
 
     <script>
     	var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
 
     	function authDataCallback(authData) {
-			if (authData) {
-				console.log("User " + authData.uid + " is logged in with " + authData.provider);
-			} else {
-				console.log("User is logged out");
-			}
-		}
+  			if (authData) {
+  				console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  			} else {
+  				console.log("User is logged out");
+  			}
+		  }
 
     	myFirebaseRef.onAuth(authDataCallback);
 

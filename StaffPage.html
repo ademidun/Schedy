@@ -63,6 +63,15 @@
                       <button class="btn btn-primary btn-calendar" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
                       <input type="submit" value="Check Students"></input>
                       </div>
+            <form onclick: 'calendarLoad()'>
+                       <p>Pick a date:</p><input type="date" id="dateInput" name="event-date"><br>
+                       <p>Start Time:</p> <input type="time" name="event-start" id="startTimeInput">
+                       <p>End Time:</p> <input type="time" name="event-end" id="endTimeInput">
+                       <p>Course:</p> <input type="text" name="course" id="courseInput">
+                       <p>Capacity:</p> <input type="numeric" name="capacity" id="capacityInput">
+            </form>
+                      <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
+                      <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%">Check Schedule</button>
                     <!--   Calendario start -->
                     <div id="custom-inner" class="custom-inner hide">
             <div class="custom-header clearfix hide">
@@ -88,7 +97,40 @@
           <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.calendario.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
-    <script > 
+    <script>
+      var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
+      var offHoursRef = myFirebaseRef.child("office_hours");
+
+      var authData = myFirebaseRef.getAuth();
+      if (authData) {
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        var userid = authData.uid;
+      } else {
+        console.log("User is logged out");
+      }
+
+      function bookAppointment(){
+          var dateIn = $('#dateInput').val();
+          var startTimeIn = $('#startTimeInput').val();
+          var endTimeIn = $('#endTimeInput').val();
+          var courseIn = $('#courseInput').val();
+          var capacityIn = $('#capacityInput').val();
+
+          offHoursRef.push({
+            start: startTimeIn,
+            end: endTimeIn,
+            course: courseIn,
+            date: dateIn,
+            capacity: capacityIn,
+            staff_id: userid
+          }); 
+
+          alert('Your new office hour was registered. Thank you!');
+          location.reload();
+      }
+
+    </script>
+    <script> 
     /*any variables which I want to use across multiple files,
      must be declared here, providing them with global scope*/
 
