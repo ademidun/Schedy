@@ -54,10 +54,11 @@
           <div class="content-calendar">
           <h1> Professor's Schedule </h1>
           </div>
-             <form onclick: 'calendarLoad()'>
+             <form onclick: 'calendarLoad()' method="post" action="StudentPage.php">
+                       <p>Please Enter Your Name:</p><input type="date" name="staffname"><br>
                        <p>When are your Office Hour's?</p><input type="date" name="event-date"><br>
                        <p>Start Time:</p> <input type="time" name="event-start">
-                       <p>Start Time:</p> <input type="time" name="event-end">
+                       <p>End Time:</p> <input type="time" name="event-end">
                        </form >
                       <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
                       </div>
