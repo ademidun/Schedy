@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  button{
+    margin: 2%;
+  }
+  input{
+    margin: 2% !important;
+  }
+</style>
+    <head>
+    <title> Calendar Plus - Sign up!</title>
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="responsive-calendar.css" rel="stylesheet" media="screen">
+    <script src="responsive-calendar2.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="calendario/css/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="calendario/css/custom_2.css" />
+    <script src="js/modernizr.custom.63321.js"></script>
+    <link rel ="stylesheet" type ="text/css" href="Atila Style.css" />
+    <link rel ="stylesheet" type ="text/css" href="calendar-style.css" />
+    <link href="responsive-calendar/responsive-calendar.css" rel="stylesheet" media="screen">
+    <script src="responsive-calendar/responsive-calendar2.js"></script>
+    </head>
+
+<body>      
+    <div id="header">
+      <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+        <h1 style="color: black !important"> Calendar Plus</h1>
+            
+        <p id="date"></p> 
+        <ul class="nav nav-pills nav-justified">
+        <li class= "headerbar"><a href="index.html">Home <i class="fa fa-home"> </i> </a></li>
+        <li class= "headerbar" class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="clutter folder/Atila Tech 1.html" class= "headerbar">Technology <span class ="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li class= "headerbar"><a href="TechHome.php">Web Design</a></li>
+                    <li class= "headerbar"><a href="atila tech 1.html">App Dev</a></li>
+                    <li class= "headerbar"><a href="#">Investments</a></li> 
+                    </ul>
+              </li>
+              <li class= "headerbar"><a href="#">About Us</a></li>
+              <li class= "headerbar"><a href="#">Finance</a></li>
+              <li class= "headerbar"><a href="atila contact us.html">Contact Us</a></li>
+            </ul>
+    </div>
+    
+    <div>
+      <h1> Sign up! </h1>
+    </div>
+          
+    <div>
+
+      <input type='text' id='emailInput' placeholder='Email'>
+      <input type='username' id='usernameInput' placeholder='Username'>
+      <input type='password' id='passwordInput' placeholder='Password'>
+      <select id="profileInput">
+        <option value="staff">Staff</option>
+        <option value="student" selected="selected">Student</option>
+      </select>
+      <button onclick="createAccount()" type="button" class="btn btn-primary">Create account!</button>
+
+      <br><h1>Debug area! Don't worry, will be fixed soon!</h1><br>
+      <button onclick="retrieveUsers()" type="button" class="btn btn-primary">Retrieve users!</button>
+    </div>
+
+</body>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.calendario.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+
+    <script>
+      var myFirebaseRef = new Firebase("https://schedy.firebaseio.com");
+      var usersRef = myFirebaseRef.child("users");
+      var authData = myFirebaseRef.getAuth();
+      if (authData) {
+        //show button to log out!
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+      } else {
+        console.log("User is logged out");
+      }
+
+      function retrieveUsers(){
+        usersRef.on("value", function(snapshot) {
+          console.log(snapshot.val());
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
+      }
+
+
+      function createAccount(){
+        console.log('Creating account...');
+
+        var emailIn = $('#emailInput').val();
+        var userIn = $('#usernameInput').val();
+        var passwordIn = $('#passwordInput').val();
+        var e = document.getElementById("profileInput");
+        var profileIn = e.options[e.selectedIndex].value;
+        
+        myFirebaseRef.createUser({
+          email    : emailIn,
+          password : passwordIn
+        }, function(error, userData) {
+          if (error) {
+            console.log("Error creating user:", error);
+          } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+
+            var profileRef = usersRef.child(profileIn);
+            var newUserRef = profileRef.child(userIn);
+
+            newUserRef.set({
+              email: emailIn
+            });
+
+            console.log("All info successfully registered!");
+            alert('Thank you for registering!');
+            window.location.replace("index.html");
+        
+          }
+        });
+
+
+      }
+
+    </script>
