@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style type="text/css">
+  button{
+    margin: 2%;
+  }
+  input{
+    margin: 2% !important;
+  }
+</style>
+    <title> Calendar Plus</title>
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="responsive-calendar.css" rel="stylesheet" media="screen">
+    <script src="responsive-calendar2.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel ="stylesheet" type ="text/css" href="Atila Style.css">
+    <link href"calendar-style.css" rel="stylesheet" media="screen">
+    </head>
+
+<body>      
+      <div id="header">
+      		<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+            <h1 style="color: black !important"> Calendar Plus</h1>
+            
+            <p id="date"></p> 
+            <ul class="nav nav-pills nav-justified">
+              <li class= "headerbar"><a href="index.html">Home <i class="fa fa-home"> </i> </a></li>
+              <li class= "headerbar" class="dropdown" ><a class="dropdown-toggle" 
+              data-toggle="dropdown" href="clutter folder/Atila Tech 1.html" class= "headerbar">Technology <span class ="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li class= "headerbar"><a href="TechHome.php">Web Design</a></li>
+                    <li class= "headerbar"><a href="atila tech 1.html">App Dev</a></li>
+                    <li class= "headerbar"><a href="#">Investments</a></li> 
+                    </ul>
+              </li>
+              <li class= "headerbar"><a href="#">About Us</a></li>
+              <li class= "headerbar"><a href="#">Finance</a></li>
+              <li class= "headerbar"><a href="atila contact us.html">Contact Us</a></li>
+            </ul>
+    </div>
+
+    <div id="content">
+      <h1 class="home-title" style="color: white !important"> I am a ... </h1>
+             <div id="signin" class="container">
+                <div class="row">
+                    <div class="col-sm-2 col-sm-offset-5">
+                        <a href= "StaffPage.html"> <button type="button" class="btn btn-primary"> Staff</button> </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-sm-offset-5">
+                        <a href="StudentPage.html"> <button id="signup" type="button" class="btn btn-primary"> Student</button> </a>
+                    </div>
+                </div>
+             </div>
+    </div>
+
+    <div>
+    	<br><h1>Debug area! Don't worry, will be fixed soon!</h1><br>
+    	<input type='text' id='emailInput' placeholder='Email'>
+	    <input type='password' id='passwordInput' placeholder='Password'>
+	    <button onclick="submitStaff()" type="button" class="btn btn-primary"> Staff</button>
+	    <button onclick="submitStudent()" type="button" class="btn btn-primary"> Student</button>
+	    <button onclick="logout()" type="button" class="btn btn-primary"> Log out</button>
+    </div>
+
+    <script>
+    	var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
+
+    	function authDataCallback(authData) {
+			if (authData) {
+				console.log("User " + authData.uid + " is logged in with " + authData.provider);
+			} else {
+				console.log("User is logged out");
+			}
+		}
+
+    	myFirebaseRef.onAuth(authDataCallback);
+
+    	function authHandlerStaff(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Login successful!");
+				console.log("Authenticated successfully with payload:", authData);
+				window.location.replace("StaffPage.html");
+			}
+		}
+
+
+    	function authHandlerStudent(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Login successful!");
+				console.log("Authenticated successfully with payload:", authData);
+				window.location.replace("StudentPage.html");
+			}
+		}
+
+
+        function submitStudent(){
+        	var emailIn = $('#emailInput').val();
+        	var passwordIn = $('#passwordInput').val();
+        	
+        	myFirebaseRef.authWithPassword({
+			email    : emailIn,
+			password : passwordIn
+			}, authHandlerStudent, { remember: "sessionOnly"} );
+        }
+
+        function submitStaff(){
+			var emailIn = $('#emailInput').val();
+        	var passwordIn = $('#passwordInput').val();
+        	
+        	myFirebaseRef.authWithPassword({
+			email    : emailIn,
+			password : passwordIn
+			}, authHandlerStaff, { remember: "sessionOnly"} );
+        }
+    	
+    	function logout(){
+    		myFirebaseRef.unauth();
+    	}
+
+    </script>
+</body>
+
+</html>
