@@ -87,14 +87,40 @@
     <script type="text/javascript" src="js/jquery.calendario.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script>
-      var ref = new Firebase("https://schedy.firebaseio.com");
-      var authData = ref.getAuth();
+      var myFirebaseRef = new Firebase("https://schedy.firebaseio.com");
+      var authData = myFirebaseRef.getAuth();
       if (authData) {
-        alert("Welcome " + authData.uid + "!");
+        //show button to log out!
         console.log("User " + authData.uid + " is logged in with " + authData.provider);
       } else {
         console.log("User is logged out");
       }
+
+      function createUsers(){
+        console.log('Creating users...');
+        
+        myFirebaseRef.createUser({
+          email    : "alicia@oi.com",
+          password : "1234"
+        }, function(error, userData) {
+          if (error) {
+            console.log("Error creating user:", error);
+          } else {
+            console.log("Successfully created user account with uid:", userData.uid);
+          }
+        });
+
+        var usersRef = myFirebaseRef.child("users");
+        var username = "alicia";
+        var email = "alicia@oi.com"
+        var profileIn = "student";
+        var emailRef = usersRef.child(email);
+
+        newUserRef.set({
+          profile: profileIn
+        });
+      }
+
     </script>
     <script > 
     /*any variables which I want to use across multiple files,
