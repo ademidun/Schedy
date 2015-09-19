@@ -51,8 +51,12 @@
             </ul>
     </div>
       <?php
+      $servername = "localhost";
+      $username = "user1";
+      $password = ""; 
+      $database = "Schedy"; 
       //connect to mysql
-      $db=mysqli_connect("localhost", "user1"," ","Schedy" );
+      $db= new mysqli($servername, $username, $password, $database);
       //populate PHP with the staff values
       $staffname=$_POST['staffname'];
       $eventdate=$_POST['event-date'];
