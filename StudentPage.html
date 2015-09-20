@@ -89,7 +89,6 @@
       var ref = new Firebase("https://schedy.firebaseio.com");
       var authData = ref.getAuth();
       if (authData) {
-        alert("Welcome " + authData.uid + "!");
         console.log("User " + authData.uid + " is logged in with " + authData.provider);
       } else {
         console.log("User is logged out");
