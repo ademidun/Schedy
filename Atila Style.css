@@ -80,7 +80,7 @@ table a:hover, li:hover {
     }*/
     #content{
         vertical-align: middle;
-        background: url(http://i61.tinypic.com/24cfx3k.jpg) no-repeat center center fixed;
+        /*background: url(http://i61.tinypic.com/24cfx3k.jpg) no-repeat center center fixed;*/
         background-size: 100% 100%;
         clear: both;
         width: 100%;
@@ -120,7 +120,7 @@ table a:hover, li:hover {
         z-index: 99;
     }
     .row .btn-primary {
-        margin: 2.5% 0 2.5% 50%;
+        /*margin: 2.5% 0 2.5% 50%;*/
         background-color: #33b5e5;
         border: #33b5e5;
     }

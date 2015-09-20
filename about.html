@@ -16,6 +16,7 @@
   #content{
     text-align: center;
     color: black;
+    margin: 10px;
   }
   #notAmember{
     font-size: 20px;
@@ -23,8 +24,11 @@
   #notAmember a{
     color: #33b5e5;
   }
+  #disclaimer{
+    font-size: 10px;
+  }
 </style>
-    <title>Schedy - Home</title>
+    <title>Schedy - About</title>
         
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -40,7 +44,7 @@
 
 <body>      
       <div id="header">
-          <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+      		<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
             <!--<h1 style="color: black !important">Schedy</h1>-->
             <div id="logo_out">
               <img src="images/schedycal.png" width="300" height="77" align="center">
@@ -58,18 +62,13 @@
     </div>
 
     <div id="content">
-      <h1 class="home-title">I am a... </h1>
-             <div id="signin" class="container">
-                <p><input type='text' id='emailInput' placeholder='Email'></p>
-                <p><input type='password' id='passwordInput' placeholder='Password'></p>
-                <div class="row">
-                    <div class="col-sm-2 col-sm-offset-5">
-                        <p><button onclick="submitStaff()" type="button" class="btn btn-primary">Staff</button></p>
-                        <p><button onclick="submitStudent()" type="button" class="btn btn-primary">Student</button></p>
-                        <p id="notAmember">Not a member yet? <a href="sign_up.html">Sign up now!</a></p>
-                    </div>
-                </div>
-             </div>
+      <p>Schedy was first idealized by Tomiwa and grabbed the attention of the other members of the group.</p>
+      <p>Office hours are very interesting in theory, but can be very hard to actually work out well.</p>
+      <h3>Don't be affraid - Schedy will help you out!*</h3>
+      <p>Instructors can register their office hours within seconds and students can schedule drop ins with just one click. <br>They can also check how many other students are
+      attending the same session and avoid conflicts.</p>
+      <h2>Schedy: scheduling made easy.</h2>
+      <p id="disclaimer">*Soon, anyway. Schedy is still on alpha - please be patient.</p>
     </div>
 
     <script>
