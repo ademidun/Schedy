@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
 <style type="text/css">
   button{
     margin: 2%;
   }
-  input{
-    margin: 2% !important;
+  #logoutbutton{
+    float:right;
+  }
+  #logo_out{
+    margin: 5px;
+    text-align: center;
+  }
+  #content{
+    text-align: center;
+    color: black;
   }
   i.traffic-light{
 color: #35EA08 !important;
@@ -19,30 +26,33 @@ color: #FF2300 !important;
 }
 </style>
     <head>
-    <title> Calendar Plus</title>
-        
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <title>Schedy - Staff</title>
+          
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link href="responsive-calendar.css" rel="stylesheet" media="screen">
-    <script src="responsive-calendar2.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="calendario/css/calendar.css" />
-    <link rel="stylesheet" type="text/css" href="calendario/css/custom_2.css" />
-    <script src="js/modernizr.custom.63321.js"></script>
-    <link rel ="stylesheet" type ="text/css" href="Atila Style.css" />
-    <link rel ="stylesheet" type ="text/css" href="calendar-style.css" />
-    <link href="responsive-calendar/responsive-calendar.css" rel="stylesheet" media="screen">
-    <script src="responsive-calendar/responsive-calendar2.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link href="responsive-calendar.css" rel="stylesheet" media="screen">
+      <script src="responsive-calendar2.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="calendario/css/calendar.css" />
+      <link rel="stylesheet" type="text/css" href="calendario/css/custom_2.css" />
+      <script src="js/modernizr.custom.63321.js"></script>
+      <link rel ="stylesheet" type ="text/css" href="Atila Style.css" />
+      <link rel ="stylesheet" type ="text/css" href="calendar-style.css" />
+      <link href="responsive-calendar/responsive-calendar.css" rel="stylesheet" media="screen">
+      <script src="responsive-calendar/responsive-calendar2.js"></script>
     </head>
 
-<body>      
+    <body>      
       <div id="header">
-            <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
-            <h1 style="color: black !important"> Calendar Plus</h1>
-            
+          <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+            <!--<h1 style="color: black !important">Schedy</h1>-->
+            <div id="logo_out">
+              <img src="images/schedycal.png" width="300" height="77" align="center">
+              <button onclick="logout()" type="button" class="btn btn-primary" id="logoutbutton"> Log out</button>
+            </div>
             <p id="date"></p> 
             <ul class="nav nav-pills nav-justified">
               <li class= "headerbar"><a href="index.html">Home <i class="fa fa-home"> </i> </a></li>
@@ -54,39 +64,28 @@ color: #FF2300 !important;
                     <li class= "headerbar"><a href="#">Investments</a></li> 
                     </ul>
               </li>
-              <li class= "headerbar"><a href="#">About Us</a></li>
+              <li class= "headerbar"><a href="about.html">About Us</a></li>
               <li class= "headerbar"><a href="#">Finance</a></li>
-              <li class= "headerbar"><a href="atila contact us.html">Contact Us</a></li>
+              <li class= "headerbar"><a href="contact.html">Contact Us</a></li>
             </ul>
     </div>
     
           <div class="content-calendar">
           <h1> Staff's Schedule </h1>
           </div>
-             <form method="post" >
-                       <p>Please Enter Your Name:</p><input type="text" name="staffname"><br>
-                       <p>When are your Office Hour's?</p><input type="date" name="event-date"><br>
-                       <p>Start Time:</p> <input type="time" name="event-start">
-                       <p>End Time:</p> <input type="time" name="event-end">
-                       </form >
-                      <button class="btn btn-primary btn-calendar" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
-                      </div>
-                      <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
-<!-- =======
-             
             <form onclick: 'calendarLoad()'>
-                       <p>Pick a date:</p><input type="date" id="dateInput" name="event-date"><br>
-                       <p>Start Time:</p> <input type="time" name="event-start" id="startTimeInput">
-                       <p>End Time:</p> <input type="time" name="event-end" id="endTimeInput">
-                       <p>Course:</p> <input type="text" name="course" id="courseInput">
-                       <p>Capacity:</p> <input type="numeric" name="capacity" id="capacityInput">
+                  <p>Pick a date:</p><input type="date" id="dateInput" name="event-date"><br>
+                  <p>Start Time:</p> <input type="time" name="event-start" id="startTimeInput">
+                  <p>End Time:</p> <input type="time" name="event-end" id="endTimeInput">
+                  <p>Course:</p> <input type="text" name="course" id="courseInput">
+                  <p>Capacity:</p> <input type="numeric" name="capacity" id="capacityInput">
             </form>
-                      <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
-                      <button class="btn btn-primary btn-calendar" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
-                      <input type="submit" value="Check Students"></input>
->>>>>>> origin/master -->
+                  <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
+                  <button class="btn btn-primary btn-calendar" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
+                  <input type="submit" value="Check Students"></input>
+
                     <!--   Calendario start -->
-                    <div id="custom-inner" class="custom-inner hide">
+                  <div id="custom-inner" class="custom-inner hide">
             <div class="custom-header clearfix hide">
               <nav>
                 <span id="custom-prev" class="custom-prev"></span>
@@ -140,10 +139,7 @@ color: #FF2300 !important;
           }); 
 
           alert('Your new office hour was registered. Thank you!');
-<<<<<<< HEAD
-=======
-          
->>>>>>> origin/master
+
       }
 
     </script>
