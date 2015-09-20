@@ -8,6 +8,15 @@
   input{
     margin: 2% !important;
   }
+  i.traffic-light{
+color: #35EA08 !important;
+}
+i.traffic-medium{
+color: #F39B2F !important;
+}
+i.traffic-heavy{
+color: #FF2300 !important;
+}
 </style>
     <head>
     <title> Calendar Plus</title>
@@ -54,24 +63,15 @@
           <div class="content-calendar">
           <h1> Professor's Schedule </h1>
           </div>
-             <form ethod="post" >
+             <form method="post" >
                        <p>Please Enter Your Name:</p><input type="text" name="staffname"><br>
                        <p>When are your Office Hour's?</p><input type="date" name="event-date"><br>
                        <p>Start Time:</p> <input type="time" name="event-start">
                        <p>End Time:</p> <input type="time" name="event-end">
                        </form >
                       <button class="btn btn-primary btn-calendar" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
-                      <input type="submit" value="Check Students"></input>
                       </div>
-            <form onclick: 'calendarLoad()'>
-                       <p>Pick a date:</p><input type="date" id="dateInput" name="event-date"><br>
-                       <p>Start Time:</p> <input type="time" name="event-start" id="startTimeInput">
-                       <p>End Time:</p> <input type="time" name="event-end" id="endTimeInput">
-                       <p>Course:</p> <input type="text" name="course" id="courseInput">
-                       <p>Capacity:</p> <input type="numeric" name="capacity" id="capacityInput">
-            </form>
                       <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
-                      <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%">Check Schedule</button>
                     <!--   Calendario start -->
                     <div id="custom-inner" class="custom-inner hide">
             <div class="custom-header clearfix hide">
@@ -97,6 +97,7 @@
           <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.calendario.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
+    <link rel="stylesheet" type="text/css" href="calendario/css/custom_2.css">
     <script>
       var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
       var offHoursRef = myFirebaseRef.child("office_hours");
@@ -126,7 +127,6 @@
           }); 
 
           alert('Your new office hour was registered. Thank you!');
-          location.reload();
       }
 
     </script>
@@ -223,7 +223,13 @@ var codropsEvents = {
         var emptyseats='';
         for(var i=0; i<capacity; i++){//# of circles is based on class time
           seatnumber=(i+1);
-        emptyseats+=`<i class= \"fa fa-circle-o-notch traffic-none\" id=\"seat${seatnumber}\"></i>`;}
+          if( 1<=seatnumber && seatnumber<=(0.5*capacity))
+        emptyseats+=`<i style=\"color: #35EA08 !important\" class= \"fa fa-circle-o-notch traffic-light\" id=\"seat${seatnumber}\"></i>`;
+        else if( (0.5*capacity)<seatnumber && seatnumber<=(capacity-3))
+        emptyseats+=`<i style=\"color: #F39B2F !important\"class= \"fa fa-circle-o-notch traffic-medium\" id=\"seat${seatnumber}\"></i>`;
+      else if( (capacity-3)<seatnumber)
+        emptyseats+=`<i style=\"color: #FF2300 !important\"class= \"fa fa-circle-o-notch traffic-heavy\" id=\"seat${seatnumber}\"></i>`;
+    }
           
         capacitylocation.append(emptyseats);
       return false;
