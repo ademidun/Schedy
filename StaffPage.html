@@ -54,6 +54,15 @@
           <div class="content-calendar">
           <h1> Staff's Schedule </h1>
           </div>
+             <form ethod="post" >
+                       <p>Please Enter Your Name:</p><input type="text" name="staffname"><br>
+                       <p>When are your Office Hour's?</p><input type="date" name="event-date"><br>
+                       <p>Start Time:</p> <input type="time" name="event-start">
+                       <p>End Time:</p> <input type="time" name="event-end">
+                       </form >
+                      <button class="btn btn-primary btn-calendar" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
+                      <input type="submit" value="Check Students"></input>
+                      </div>
             <form onclick: 'calendarLoad()'>
                        <p>Pick a date:</p><input type="date" id="dateInput" name="event-date"><br>
                        <p>Start Time:</p> <input type="time" name="event-start" id="startTimeInput">
@@ -63,7 +72,6 @@
             </form>
                       <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
                       <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%">Check Schedule</button>
-
                     <!--   Calendario start -->
                     <div id="custom-inner" class="custom-inner hide">
             <div class="custom-header clearfix hide">
@@ -133,7 +141,7 @@ var codropsEvents = {
   // '09-31-2015' : '<span>New Year\'s Eve</span>'
 };
     var userday, userdayArr, eventStart;
-      $('button').click(function calendarLoad() {
+      $('.btn-calendar').click(function calendarLoad() {
         var showcal =$('.custom-inner, .custom-header');
         showcal.removeClass('hide');
         userday = $('[name=event-date]').val();

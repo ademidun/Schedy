@@ -50,22 +50,39 @@
               <li class= "headerbar"><a href="atila contact us.html">Contact Us</a></li>
             </ul>
     </div>
-    
-          <div class="content-calendar">
-          <h1> Staff's Schedule </h1>
-          </div>
-            <form onclick: 'calendarLoad()'>
-                       <p>Pick a date:</p><input type="date" id="dateInput" name="event-date"><br>
-                       <p>Start Time:</p> <input type="time" name="event-start" id="startTimeInput">
-                       <p>End Time:</p> <input type="time" name="event-end" id="endTimeInput">
-                       <p>Course:</p> <input type="text" name="course" id="courseInput">
-                       <p>Capacity:</p> <input type="numeric" name="capacity" id="capacityInput">
-            </form>
-                      <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
-                      <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%">Check Schedule</button>
+      <?php
+      $servername = "localhost";
+      $username = "user1";
+      $password = ""; 
+      $database = "Schedy"; 
+      //connect to mysql
+      $db= new mysqli($servername, $username, $password, $database);
+      //populate PHP with the staff values
+      $staffname=$_POST['staffname'];
+      $eventdate=$_POST['event-date'];
+      $eventstart=$_POST['event-start'];
 
-                    <!--   Calendario start -->
-                    <div id="custom-inner" class="custom-inner hide">
+      //now we will populate our MySQL values
+
+      $query="INSERT INTO Staff (UserName, EventDate, StartTime)
+      VALUES ('$staffname','$eventdate', '$eventstart')";
+
+      ?>
+          <div class="content-calendar">
+          <h1> Student's Schedule </h1>
+          </div>
+             <form onclick: 'calendarLoad()'>
+                <p>Select Your Professor: <select>
+                <option value= "<?php echo $staffname?>"><?php echo $staffname?>/option>
+                </select>
+             <p>Select a time slot:</p> <select>
+                <option value= "<?php echo $eventstart?>"><?php echo $eventstart?>/option>
+                </select>
+             </form >
+            <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
+            </div>
+          <!--   Calendario start -->
+          <div id="custom-inner" class="custom-inner hide">
             <div class="custom-header clearfix hide">
               <nav>
                 <span id="custom-prev" class="custom-prev"></span>
@@ -90,31 +107,15 @@
     <script type="text/javascript" src="js/jquery.calendario.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script>
-      var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
-      var offHoursRef = myFirebaseRef.child("office_hours");
-
-      var authData = myFirebaseRef.getAuth();
+      var ref = new Firebase("https://schedy.firebaseio.com");
+      var authData = ref.getAuth();
       if (authData) {
         console.log("User " + authData.uid + " is logged in with " + authData.provider);
-        var userid = authData.uid;
       } else {
         console.log("User is logged out");
       }
-
-      offHoursRef.on("value", function(snapshot) {
-        console.log(snapshot.val());
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      });
-
-      //gets all the office hours organized by date. Each field can be obteined by doing snapshot.val().*field*
-      //we have date, start (time), end (time), course, capacity and staff id
-      offHoursRef.orderByChild("date").on("child_added", function(snapshot) {
-        console.log(snapshot.key() + " will happen at " + snapshot.val().date + " from " + snapshot.val().start + " to " + snapshot.val().end);
-      });
-
     </script>
-    <script> 
+    <script > 
     /*any variables which I want to use across multiple files,
      must be declared here, providing them with global scope*/
 
@@ -128,7 +129,7 @@ var codropsEvents = {
       $('button').click(function calendarLoad() {
         var showcal =$('.custom-inner, .custom-header');
         showcal.removeClass('hide');
-        userday = $('[name=event-date]').val();
+        userday = <?php echo $eventstart?>;
         userdayArr= userday.split('-');
         userdayArr=userdayArr.reverse();
         userday=userdayArr[1]+ '-'+userdayArr[0]+ '-'+ userdayArr[2];
@@ -212,91 +213,4 @@ var codropsEvents = {
         capacitylocation.append(emptyseats);
       return false;
       });
-//     </script>
-                 <!-- Responsive calendar - START -->
-               <!-- <div class="responsive-calendar">
-//                   <div class="controls">
-//                       <a class="pull-left" data-go="prev"></a>
-//                       <h4><span data-head-year></span> <span data-head-month></span></h4>
-//                       <a class="pull-right" data-go="next"></a>
-//                   </div><hr/>
-//                   <div class="day-headers">
-//                     <div class="day header">Sun</div>
-//                     <div class="day header">Mon</div>
-//                     <div class="day header">Tue</div>
-//                     <div class="day header">Wed</div>
-//                     <div class="day header">Thu</div>
-//                     <div class="day header">Fri</div>
-//                     <div class="day header 3">Sat</div>
-//                   </div>
-//                   <div class="days" data-group="days"> -->
-                    <!-- the place where days will be generated --><!-- 
-//                   </div>
-//                 </div> -->
-                <!-- Responsive calendar - END -->
-                
-   </body>
- <script>
-// $('button').click(function(){
-//  i= $('[name=event-count]').val();
-// j = $('[name=event-date]').val();
-// //so I can remove leading zeros without changing the string
-// j2=j;
-// j2 = j2.replace(/\b0(?=\d)/g, '');
-// j2=j2.split('-');
-//  $(".responsive-calendar").responsiveCalendar({
-//     events: {
-//       j: {"number": 5, "badgeClass": "badge-warning"},
-//       j: {"number": i, "badgeClass": "badge-warning"}, 
-//       "2015-09-03": {"number": i, "badgeClass": "badge-error"}, 
-//       "2015-09-12": {"number": 1, "badgeClass": "badge-error"}
-//     }
-// });
-// var userday =`[data-day="${j2[2]}"][data-month="${j2[1]}"][data-year="${j2[0]}"]`;
-// userday= document.getElementsByClassName("day header");
-// userday =$("div.day");
-// userday=userday[0];
-// userday.className+=" active";
-//  $('.pull-left').prepend('<div class="btn btn-primary">Prev</div>');
-//   $('.pull-right').prepend('<div class="btn btn-primary">Next</div>');
-//   var x = document.getElementsByClassName("day past");
-//   var xattr;
-//   for (var i = 0; i<x.length; i++){
-//     if(typeof x[i].getAttribute("data-day")!= 'undefined'){
-//       xattr =x[i].getAttribute("data-day");
-//       break;
-//     }
-
-//   }
-//   // $element.find('[data-year="' + time.year + '"][data-month="' + (time.month + 1) + '"][data-day="' + time.day + '"]').parent('.day')
-// });
-// $('form').submit (function(event){
-// i= $('[name=event-count]').val();
-// j = $('[name=event-date]').val();
-// //so I can remove leading zeros without changing the string
-// j2=j;
-// j2 = j2.replace(/\b0(?=\d)/g, '');
-// j2=j2.split('-');
-//  $(".responsive-calendar").responsiveCalendar({
-//     events: {
-//       j: {"number": 5, "badgeClass": "badge-warning"},
-//       j: {"number": i, "badgeClass": "badge-warning"}, 
-//       "2015-09-03": {"number": i, "badgeClass": "badge-error"}, 
-//       "2015-09-12": {"number": 1, "badgeClass": "badge-error"}
-//     }
-// });
-// var userday =`[data-day="${j2[2]}"][data-month="${j2[1]}"][data-year="${j2[0]}"]`;
-// userday= document.getElementsByClassName("day header");
-// userday =$("div.day");
-// userday=userday[0];
-// userday.className+=" active";
-//  $('.pull-left').prepend('<div class="btn btn-primary">Prev</div>');
-//   $('.pull-right').prepend('<div class="btn btn-primary">Next</div>');
-//   var x = document.getElementsByTagName("a");
-//   x= x.getAttribute("data-day");
-//   // $element.find('[data-year="' + time.year + '"][data-month="' + (time.month + 1) + '"][data-day="' + time.day + '"]').parent('.day')
-// return false;
-// event.preventDefault();
-// });
-// </script>
-    </html>
+     </script>
