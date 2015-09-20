@@ -140,10 +140,6 @@ color: #FF2300 !important;
           }); 
 
           alert('Your new office hour was registered. Thank you!');
-<<<<<<< HEAD
-=======
-          
->>>>>>> origin/master
       }
 
     </script>
@@ -171,7 +167,7 @@ var codropsEvents = {
         eventEndArr=eventEnd.split(':');
 
 //populating my object after it has been created to allow for dynamic inputx
-  codropsEvents[userday] = '<h3> You have <span id="studentnumber" class="studentcount"> {insert studentCount here}</span> students today</h3> <a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a><span class="capacity-marker"></span>';
+  codropsEvents[userday] = '<h3> You have <span id="studentnumber" class="studentcount"> </span> students today</h3> <a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a><span class="capacity-marker"></span>';
         var transEndEventNames = {
             'WebkitTransition' : 'webkitTransitionEnd',
             'MozTransition' : 'transitionend',
@@ -246,6 +242,9 @@ var codropsEvents = {
         emptyseats+=`<i style=\"color: #F39B2F !important\"class= \"fa fa-circle-o-notch traffic-medium\" id=\"seat${seatnumber}\"></i>`;
       else if( (capacity-3)<seatnumber)
         emptyseats+=`<i style=\"color: #FF2300 !important\"class= \"fa fa-circle-o-notch traffic-heavy\" id=\"seat${seatnumber}\"></i>`;
+      if(seatnumber==capacity)
+        $('#studentnumber').append(`<p>${seatnumber}</p>`);
+        $('#studentnumber').css("color", "#FF2300" );
     }
           
         capacitylocation.append(emptyseats);
