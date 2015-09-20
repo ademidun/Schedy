@@ -14,6 +14,7 @@
   #content{
     text-align: center;
     color: black;
+    padding: 5px;
   }
   i.traffic-light{
 color: #35EA08 !important;
@@ -73,6 +74,7 @@ color: #FF2300 !important;
           <div class="content-calendar">
           <h1> Staff's Schedule </h1>
           </div>
+          <div id="content">
             <form onclick: 'calendarLoad()'>
                   <p>Pick a date:</p><input type="date" id="dateInput" name="event-date"><br>
                   <p>Start Time:</p> <input type="time" name="event-start" id="startTimeInput">
@@ -82,8 +84,7 @@ color: #FF2300 !important;
             </form>
                   <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
                   <button class="btn btn-primary btn-calendar" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
-                  <input type="submit" value="Check Students"></input>
-
+          </div>
                     <!--   Calendario start -->
                   <div id="custom-inner" class="custom-inner hide">
             <div class="custom-header clearfix hide">
