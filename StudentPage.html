@@ -101,25 +101,17 @@
         console.log("User is logged out");
       }
 
-      function bookAppointment(){
-          var dateIn = $('#dateInput').val();
-          var startTimeIn = $('#startTimeInput').val();
-          var endTimeIn = $('#endTimeInput').val();
-          var courseIn = $('#courseInput').val();
-          var capacityIn = $('#capacityInput').val();
+      offHoursRef.on("value", function(snapshot) {
+        console.log(snapshot.val());
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
 
-          offHoursRef.push({
-            start: startTimeIn,
-            end: endTimeIn,
-            course: courseIn,
-            date: dateIn,
-            capacity: capacityIn,
-            staff_id: userid
-          }); 
-
-          alert('Your new office hour was registered. Thank you!');
-          location.reload();
-      }
+      //gets all the office hours organized by date. Each field can be obteined by doing snapshot.val().*field*
+      //we have date, start (time), end (time), course, capacity and staff id
+      offHoursRef.orderByChild("date").on("child_added", function(snapshot) {
+        console.log(snapshot.key() + " will happen at " + snapshot.val().date + " from " + snapshot.val().start + " to " + snapshot.val().end);
+      });
 
     </script>
     <script> 
