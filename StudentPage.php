@@ -50,18 +50,35 @@
               <li class= "headerbar"><a href="atila contact us.html">Contact Us</a></li>
             </ul>
     </div>
-    
+      <?php
+      //connect to mysql
+      $db=mysqli_connect("localhost", "user1"," ","Schedy" );
+      //populate PHP with the staff values
+      $staffname=$_POST['staffname'];
+      $eventdate=$_POST['event-date'];
+      $eventstart=$_POST['event-start'];
+
+      //now we will populate our MySQL values
+
+      $query="INSERT INTO Staff (UserName, EventDate, StartTime)
+      VALUES ('$staffname','$eventdate', '$eventstart')";
+
+      ?>
           <div class="content-calendar">
           <h1> Student's Schedule </h1>
           </div>
              <form onclick: 'calendarLoad()'>
-                       <p>Select a day:</p><input type="date" name="event-date"><br>
-                       <p>Select a time slot:</p> <input type="time" name="student-time">
-                       </form >
-                      <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
-                      </div>
-                    <!--   Calendario start -->
-                    <div id="custom-inner" class="custom-inner hide">
+                <p>Select Your Professor: <select>
+                <option value= "<?php echo $staffname?>"><?php echo $staffname?>/option>
+                </select>
+             <p>Select a time slot:</p> <select>
+                <option value= "<?php echo $eventstart?>"><?php echo $eventstart?>/option>
+                </select>
+             </form >
+            <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%"> Check Schedule</button>
+            </div>
+          <!--   Calendario start -->
+          <div id="custom-inner" class="custom-inner hide">
             <div class="custom-header clearfix hide">
               <nav>
                 <span id="custom-prev" class="custom-prev"></span>
@@ -108,7 +125,7 @@ var codropsEvents = {
       $('button').click(function calendarLoad() {
         var showcal =$('.custom-inner, .custom-header');
         showcal.removeClass('hide');
-        userday = $('[name=event-date]').val();
+        userday = <?php echo $eventstart?>;
         userdayArr= userday.split('-');
         userdayArr=userdayArr.reverse();
         userday=userdayArr[1]+ '-'+userdayArr[0]+ '-'+ userdayArr[2];

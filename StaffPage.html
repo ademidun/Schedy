@@ -55,7 +55,7 @@
           <h1> Professor's Schedule </h1>
           </div>
             <form onclick: 'calendarLoad()'>
-                       <p>When are your Office Hour's?</p><input type="date" id="dateInput" name="event-date"><br>
+                       <p>Pick a date:</p><input type="date" id="dateInput" name="event-date"><br>
                        <p>Start Time:</p> <input type="time" name="event-start" id="startTimeInput">
                        <p>End Time:</p> <input type="time" name="event-end" id="endTimeInput">
                        <p>Course:</p> <input type="text" name="course" id="courseInput">
@@ -63,7 +63,7 @@
             </form>
                       <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" onclick="bookAppointment()">Register new office hour</button>
                       <button class="btn btn-primary" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%">Check Schedule</button>
-                      </div>
+
                     <!--   Calendario start -->
                     <div id="custom-inner" class="custom-inner hide">
             <div class="custom-header clearfix hide">
@@ -115,7 +115,10 @@
             date: dateIn,
             capacity: capacityIn,
             staff_id: userid
-          });  
+          }); 
+
+          alert('Your new office hour was registered. Thank you!');
+          location.reload();
       }
 
     </script>
