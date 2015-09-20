@@ -104,7 +104,7 @@
         console.log("The read failed: " + errorObject.code);
       });
 
-      var userday, userdayArr, eventStart, eventEnd, eventEndArr, attending, appointmentRef, capacity, attendingRef;
+      var userday, userdayArr, eventStart, eventEnd, eventEndArr, attending, capacity;
 
       //gets all the office hours organized by date. Each field can be obteined by doing snapshot.val().*field*
       //we have date, start (time), end (time), course, capacity and staff id
@@ -132,7 +132,10 @@ var codropsEvents = {
   // '09-31-2015' : '<span>New Year\'s Eve</span>'
 };
 
-      function dropIn(){
+      function dropIn(key){
+          console.log(userid);          
+          var appointmentRef = offHoursRef.child(key);
+          var attendingRef = appointmentRef.child("attending");
           attendingRef.push({
             userid
           });
@@ -144,13 +147,12 @@ var codropsEvents = {
           var key = childSnapshot.key();
           var childData = childSnapshot.val();
           console.log(childData.date);
-
           userday = childData.date;
           eventStart = childData.start;
           eventEnd = childData.end;
           capacity = childData.capacity;
-          appointmentRef = offHoursRef.child(key);
-          attendingRef = appointmentRef.child("attending");
+          var appointmentRef = offHoursRef.child(key);
+          var attendingRef = appointmentRef.child("attending");
           attendingRef.once("value", function(snapshot) {
             attending = snapshot.numChildren();
           });
@@ -168,7 +170,7 @@ var codropsEvents = {
           eventEndArr=eventEnd.split(':');
 
           //populating my object after it has been created to allow for dynamic inputx
-            codropsEvents[userday] = "<h3> There's a slot available from " + eventStart + " to " + eventEnd + " and others <span id='studentnumber' class='studentcount'> "+ attending +"</span> students are coming! Do you want to <button class='btn btn-primary' onclick='dropIn()'>drop in</button>?</h3> <a href='http://tympanus.net/codrops/2012/11/23/three-script-updates/'>Three Script Updates</a><span class='capacity-marker'></span>";
+            codropsEvents[userday] = "<h3> There's a slot available from " + eventStart + " to " + eventEnd + " and others <span id='studentnumber' class='studentcount'> "+ attending +"</span> students are coming! Do you want to <button class='btn btn-primary' onclick='dropIn(\""+key+"\")'>drop in</button>?</h3>";
       });
         });
 
