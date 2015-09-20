@@ -95,11 +95,11 @@
     <script>
       var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
       var offHoursRef = myFirebaseRef.child("office_hours");
-
+      var userid;
       var authData = myFirebaseRef.getAuth();
       if (authData) {
         console.log("User " + authData.uid + " is logged in with " + authData.provider);
-        var userid = authData.uid;
+        userid = authData.uid;
       } else {
         console.log("User is logged out");
       }
@@ -110,14 +110,22 @@
         console.log("The read failed: " + errorObject.code);
       });
 
+      var userday, userdayArr, eventStart, eventEnd, eventEndArr, attending, appointmentRef, attendingRef;
+
       //gets all the office hours organized by date. Each field can be obteined by doing snapshot.val().*field*
       //we have date, start (time), end (time), course, capacity and staff id
       offHoursRef.orderByChild("date").on("child_added", function(snapshot) {
+        userday = snapshot.val().date;
+        eventStart = snapshot.val().start;
+        eventEnd = snapshot.val().end;
+        appointmentRef = offHoursRef.child(snapshot.key());
+        attendingRef = appointmentRef.child("attending");
+        attendingRef.once("value", function(snapshot) {
+          attending = snapshot.numChildren();
+        });
         console.log(snapshot.key() + " will happen at " + snapshot.val().date + " from " + snapshot.val().start + " to " + snapshot.val().end);
       });
 
-    </script>
-    <script> 
     /*any variables which I want to use across multiple files,
      must be declared here, providing them with global scope*/
 
@@ -127,21 +135,30 @@ var codropsEvents = {
   // '09-25-2015' : '<span>Christmas Day</span>',
   // '09-31-2015' : '<span>New Year\'s Eve</span>'
 };
-    var userday, userdayArr, eventStart;
+
+      function dropIn(){
+          attendingRef.push({
+            userid
+          });
+        }
+    
       $('button').click(function calendarLoad() {
         var showcal =$('.custom-inner, .custom-header');
         showcal.removeClass('hide');
-        userday = $('[name=event-date]').val();
+        //userday = $('[name=event-date]').val();
         userdayArr= userday.split('-');
         userdayArr=userdayArr.reverse();
         userday=userdayArr[1]+ '-'+userdayArr[0]+ '-'+ userdayArr[2];
-        eventStart = $('[name=event-start]').val();
+        //eventStart = $('[name=event-start]').val();
         eventStartArr=eventStart.split(':');
-        eventEnd = $('[name=event-end]').val();
+        //eventEnd = $('[name=event-end]').val();
         eventEndArr=eventEnd.split(':');
 
 //populating my object after it has been created to allow for dynamic inputx
-  codropsEvents[userday] = '<h3> You have <span id="studentnumber" class="studentcount"> {insert studentCount here}</span> students today</h3> <a href="http://tympanus.net/codrops/2012/11/23/three-script-updates/">Three Script Updates</a><span class="capacity-marker"></span>';
+  codropsEvents[userday] = "<h3> There's a slot available from " + eventStart + " to " + eventEnd + " and others <span id='studentnumber' class='studentcount'> "+ attending +"</span> students are coming! Do you want to <button class='btn btn-primary' onclick='dropIn()'>drop in</button>?</h3> <a href='http://tympanus.net/codrops/2012/11/23/three-script-updates/'>Three Script Updates</a><span class='capacity-marker'></span>";
+
+        
+
         var transEndEventNames = {
             'WebkitTransition' : 'webkitTransitionEnd',
             'MozTransition' : 'transitionend',
