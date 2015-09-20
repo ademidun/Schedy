@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style type="text/css">
+  button{
+    margin: 2%;
+  }
+  #logoutbutton{
+    float:right;
+  }
+  #logo_out{
+    margin: 5px;
+    text-align: center;
+  }
+  #content{
+    text-align: center;
+    color: black;
+    margin: 10px;
+  }
+  #notAmember{
+    font-size: 20px;
+  }
+  #notAmember a{
+    color: #33b5e5;
+  }
+  #disclaimer{
+    font-size: 10px;
+  }
+</style>
+    <title>Schedy - About</title>
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="responsive-calendar.css" rel="stylesheet" media="screen">
+    <script src="responsive-calendar2.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel ="stylesheet" type ="text/css" href="Atila Style.css">
+    <link href"calendar-style.css" rel="stylesheet" media="screen">
+    </head>
+
+<body>      
+      <div id="header">
+      		<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+            <!--<h1 style="color: black !important">Schedy</h1>-->
+            <div id="logo_out">
+              <img src="images/schedycal.png" width="300" height="77" align="center">
+              <button onclick="logout()" type="button" class="btn btn-primary" id="logoutbutton"> Log out</button>
+            </div>
+            <p id="date"></p> 
+            <ul class="nav nav-pills nav-justified">
+              <li class= "headerbar"><a href="about.html">About Us</a></li>
+              <li class= "headerbar"></a>
+              </li>
+              <li class= "headerbar"><a href="index.html">Home <i class="fa fa-home"> </i> </a></li>
+              <li class= "headerbar"></li>
+              <li class= "headerbar"><a href="contact.html">Contact Us</a></li>
+            </ul>
+    </div>
+
+    <div id="content">
+      <p>Schedy was first idealized by Tomiwa and grabbed the attention of the other members of the group.</p>
+      <p>Office hours are very interesting in theory, but can be very hard to actually work out well.</p>
+      <h3>Don't be affraid - Schedy will help you out!*</h3>
+      <p>Instructors can register their office hours within seconds and students can schedule drop ins with just one click. <br>They can also check how many other students are
+      attending the same session and avoid conflicts.</p>
+      <h2>Schedy: scheduling made easy.</h2>
+      <p id="disclaimer">*Soon, anyway. Schedy is still on alpha - please be patient.</p>
+    </div>
+
+    <script>
+    	var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
+
+    	function authDataCallback(authData) {
+  			if (authData) {
+  				console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  			} else {
+  				console.log("User is logged out");
+  			}
+		  }
+
+    	myFirebaseRef.onAuth(authDataCallback);
+
+    	function authHandlerStaff(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Login successful!");
+				console.log("Authenticated successfully with payload:", authData);
+				window.location.replace("StaffPage.html");
+			}
+		}
+
+
+    	function authHandlerStudent(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Login successful!");
+				console.log("Authenticated successfully with payload:", authData);
+				window.location.replace("StudentPage.html");
+			}
+		}
+
+
+        function submitStudent(){
+        	var emailIn = $('#emailInput').val();
+        	var passwordIn = $('#passwordInput').val();
+        	
+        	myFirebaseRef.authWithPassword({
+			email    : emailIn,
+			password : passwordIn
+			}, authHandlerStudent, { remember: "sessionOnly"} );
+        }
+
+        function submitStaff(){
+			var emailIn = $('#emailInput').val();
+        	var passwordIn = $('#passwordInput').val();
+        	
+        	myFirebaseRef.authWithPassword({
+			email    : emailIn,
+			password : passwordIn
+			}, authHandlerStaff, { remember: "sessionOnly"} );
+        }
+    	
+    	function logout(){
+    		myFirebaseRef.unauth();
+    	}
+
+    </script>
+</body>
+
+</html>
