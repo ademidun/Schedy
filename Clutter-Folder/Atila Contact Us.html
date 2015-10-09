@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        vertical-align: middle;
+        background: url(OsodiLagosUncelebrated2004-2007.jpg) no-repeat center center fixed;
+        background-size: 100% 100%;
+        clear: both;
+        width: 100%;
+        height: 500px;
+		position: relative;
+		z-index: -1;
+    }
+</style>
+
+
+<head>
+    <title> Contact Us</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel ="stylesheet" type ="text/css" href="Atila Style.css">
+    </head>
+
+<body>
+<div id="header">
+            <h1> Atila Inc.</h1>
+            <p id="date"></p> <!-- This is for the home page -->
+            <ul class="nav nav-pills nav-justified">
+              <li><a href="index.html">Home</a></li>
+              <li class="dropdown" ><a class="dropdown-toggle" 
+              data-toggle="dropdown" href="Atila Tech 1.html">Technology <span class ="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="TechHome.html">Web Design</a></li>
+                    <li><a href="atila tech 1.html">App Dev</a></li>
+                    <li><a href="#">Investments</a></li> 
+                    </ul>
+              </li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Finance</a></li>
+              <li><a href="atila contact us.html">Contact Us</a></li>
+            </ul>
+    </div>
+<div id="content">
+<h2 id="subhead"> Contact Us </h2>
+</div>
+<form method= "post" action="http://www.hashemian.com/tools/form-post-tester.php"> 
+	<td> First Name:
+	<input type ="text" name ="FirstName" size= "25"/>
+	<br><br></td>
+	<td> Last Name:
+	<input type ="text" name ="LastName" size= "25"/>
+	<br><br></td>
+	<td> Email:
+	<input type ="text" name ="email" size= "25"/>
+	<br><br></td>
+	<td> Phone Number:
+	<input type ="text" name ="phone" maxlength="13"/>
+	<br><br></td>
+	<p> <strong>Please leave a message:</strong></p><br>
+	<textarea name="message" rows="3" cols="40">
+	</textarea>
+	<br><br>
+	<p> <strong>Preferred Method of Contact:</strong></p><br>
+	<td> <input type="checkbox" name="contact" value="email" checked="checked"/> Email 
+	</td>
+	<td> <input type="checkbox" name="contact" value="phone" checked="checked"/> Phone 
+	</td>
+	<select name="phone">
+		<option> Call </option>
+		<option selected="selected"> Text </option>
+	</select><br><br>
+	<input type="submit" value="Submit">
+	<input type="reset" value="Reset">
+</form>
+	
+<div id="demo" style="float: right">
+
+<form id="frm1" action="form_action.asp">
+  First name: <input type="text" name="fname" value="Donald"><br>
+  Last name: <input type="text" name="lname" value="Duck"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>Click "Try it" to display the value of each element in the form.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+
+
+</body>
+
+
+	<button onclick="myFunction()" id="verify"> Verify</button>
+	<p id="js"> TEST TESt</p>
+	<script>
+		function myFunction() {
+		    var x = document.forms["frm1"];
+		    var age = x.elements[1].value;
+		    if( age < 12.0)
+				{	document.getElementById('demo').innerHTML= "Your age is:		 " + age + " Come back in " + (12 - age) + " years. ";
+				}
+		}
+</script>
+
+
+
+</body>
+</html>
+
+<!-- <form action=" "> 
+	<td> First Name:
+	<input type ="text" name ="FirstName" size= "25"/>
+	<br><br></td>
+	<td> Last Name:
+	<input type ="text" name ="LastName" size= "25"/>
+	<br><br></td>
+	<td> Email:
+	<input type ="text" name ="email" size= "25"/>
+	<br><br></td>
+	<td> Phone Number:
+	<input type ="text" name ="phone" maxlength="13"/>
+	<br><br></td>
+	<p> <strong>Please leave a message:</strong></p><br>
+	<textarea name="message" rows="3" cols="40">
+	</textarea>
+	<br><br>
+	<p> <strong>Preferred Method of Contact:</strong></p><br>
+	<td> <input type="checkbox" name="contact" value="email" checked="checked"/> Email 
+	</td>
+	<td> <input type="checkbox" name="contact" value="phone" checked="checked"/> Phone 
+	</td>
+	<select name="phone">
+		<option> Call </option>
+		<option selected="selected"> Text </option>
+	</select><br><br>
+	<input type="submit" value="Submit">
+	<input type="reset" value="Reset">
+</form> -->

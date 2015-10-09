@@ -1,0 +1,190 @@
+<html>
+
+<head>
+    <title> Atila Inc.</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel ="stylesheet" type ="text/css" href="Atila Style.css">
+    </head>
+
+<style>
+/*    body {
+        vertical-align: middle;
+        background: url(http://africanah.org/wp-content/uploads/2014/11/OsodiLagosUncelebrated2004-2007.jpg) no-repeat center center fixed;
+        background-size: 100% 100%;
+        clear: both;
+        width: 100%;
+        height: 500px;
+        position: relative;
+        z-index: -1;
+    }*/
+    button{
+        margin-left: 25%;
+        clear: both;
+    }
+</style>
+<body>
+    <div id="header">
+            <h1> Atila Inc.</h1>
+            <p id="date"></p> <!-- This is for the home page -->
+            <ul class="nav nav-pills nav-justified">
+              <li><a href="index.html">Home</a></li>
+              <li class="dropdown" ><a class="dropdown-toggle" 
+              data-toggle="dropdown" href="Atila Tech 1.html">Technology <span class ="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="TechHome.html">Web Design</a></li>
+                    <li><a href="atila tech 1.html">App Dev</a></li>
+                    <li><a href="#">Investments</a></li> 
+                    </ul>
+              </li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Finance</a></li>
+              <li><a href="atila contact us.html">Contact Us</a></li>
+            </ul>
+    </div>
+<!--     <div id="contentForm">
+        <form id="frm1" action="http://www.hashemian.com/tools/form-post-tester.php" method="post">
+          # of Employees: <input type="text" name="empCount" id="empCount"><br>
+          <dv id="dynamicInput">
+          Last name: <input type="text" name="lname[]" id="lname"><br><br>
+        <!-   <input type="submit" id="submit" value="submit">
+            </div>
+        </form> 
+        <p id="demo2"></p>
+        <button id="button1" onclick="newUser('dynamicInput');">New Employee</button>
+    </div> --> 
+<div id="content">
+<form action="atila.php" method="post">
+     <div id="dynamicInput">
+          Supervisor's Name:<br><input type="text" name="name1Input" id="name1" >
+     <div id="input1name">
+          </div>
+          <p id="input1namebox"></p>
+     <div id="input1box">
+          # of Employees<br><input type="text" name="myInputs[]" id="input1">
+          </div>
+     <br><input type="button" value="Add another text input" onClick="addInput('dynamicInput');">
+     </div>
+</form>
+</div>
+
+<script>
+// var limit= $("#empCount").val();
+// var emp = 1;
+// function newUser(divName){
+//     if(limit==emp){
+//         //try to avoid too many unnecessary alerts/popups
+//         alert("You have finished adding all Employees");
+//     }
+//     else{
+//         var newdiv= document.creatElement("div");
+//         newdiv.innerHTML= "Employee " + (emp + 1) + " <br><input type='text' name='myInputs[]'>";
+//         document.getElementById(divName).appendChild(newdiv);
+//         emp++;
+//     }
+// }
+
+var counter = 0;
+var limit;
+
+
+$('#name1').change(function(){
+var fullName=$('#name1').val();
+fullName = fullName.split(" ");
+//document.getElementById("input1name").innerHTML +=fullName[0].lastIndexOf('s') + ": location length: " + fullName[0].length;
+    //Just to ensure right grammatical result is displayed,
+    //Grammatical check for If first name ends with 's' or otherwise
+    if((fullName[0].lastIndexOf('s') + 1)==fullName[0].length)
+      document.getElementById("input1name").innerHTML ="<br>" + fullName[0] +"' Employee List";
+    else
+  document.getElementById("input1name").innerHTML = "<br>" + fullName[0] +"'s Employee List";
+});
+
+$('#input1').change(function(){
+limit = $('#input1').val();
+});
+
+function addInput(divName){
+	if(isNaN(limit)){
+		alert("Please Enter a Valid Number");
+		return;
+	}
+     if (counter < limit) {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "Employee " + (counter+1) + ": <br><input type='text' name='nameInput[]'><br>";
+          newdiv.innerHTML +="  Employee " + (counter+1) + " ID#:<br> <input type='text' name='idInput[]' maxlength='5'><br>";
+          newdiv.innerHTML +="  Employee " + (counter+1) + " Salary: <br><input type='text' name='salInput[]' maxlength='10'><br><br> ";
+          $('#input1box').append(newdiv);
+     }
+          if ((counter+1) == limit)  {
+          var newButton = document.createElement('div');
+          // newButton.innerHTML = " <input type= 'submit' name='submit1'>";
+          $('#input1box').append(" <input type='submit' id='submit0' value= 'submit'>");
+          // alert("You have reached the limit of adding " + limit + " Employees");
+     }
+     counter++;
+
+}
+
+//      var displayResult= function(){
+// 	var fullName=$('#input1name').val();
+// 	fullName = fullName.split(" ");
+// 	var confirmString = "<p> fullname[1] + '\'s list is complete!'</p>";
+// 	$('#input1box').append(confirmString);
+// };
+// $('#submit1').click(displayResult);
+</script>
+</body>
+</html>
+
+<!-- // If I delclare X here \/ the code will not run, why?
+//x = document.getElementById("fname").value
+//When I run the line below, I get an alert, but the form is still posted despite the return of false
+//document.getElementById("frm1").addEventListener("submit",function2);
+//document.getElementById("fname").addEventListener("change", myFunction);
+//Age verification practice code
+// var myFunction= function() {
+//     var x = $("#fname").val();
+//     if (x<19){
+//     $("#demo2")
+//      .text("Try again in " + (19-x) + "years.");
+//     }
+//     else if (x==19){
+//      $("#demo2")
+//      .text("You are good to go!");
+//     }
+// else if (x >19){
+//      $("#demo2")
+//      .text("You were good " + (x-19) + " years ago.");
+//     }
+// };
+// if I had put this eventhandler before the function def, it would not have worked, why?
+//$("#fname").change(myFunction);
+
+//THis is to test the submit button
+// document.getElementById("frm1").onsubmit=function2;
+// function function2(){
+//     if (isNaN(x = document.getElementById("fname").value))
+//     {
+//         alert("That is not a number.") ;
+//         return false;
+//     }
+// }
+// document.getElementById("fname").addEventListener("change", otherFunction);
+// function otherFunction(){
+//     if (x>19){
+//      document.getElementById("demo2").innerHTML = 
+// "Wait " + (19-x) + " more years.\n";
+// }
+// else if (x==19){
+//      document.getElementById("demo2").innerHTML =
+//  "You are good to go!" <br>;
+// }
+// else if (x<19){
+//      document.getElementById("demo2").innerHTML = "You were good " (x-19) + " years ago.\n";
+// }
+
+// } -->

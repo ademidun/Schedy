@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Schedy - Home</title>
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel ="stylesheet" type ="text/css" href="Atila Style.css">
+    <link href"calendar-style.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+  button{
+    margin: 2%;
+  }
+  #logoutbutton{
+    float:right;
+  }
+  #logo_out{
+    margin: 5px;
+    text-align: center;
+  }
+  #content{
+    text-align: center;
+    color: black;
+  }
+  #notAmember{
+    font-size: 20px;
+  }
+  #notAmember a{
+    color: #33b5e5;
+  }
+  .row .btn-primary{
+    margin: 0% ;
+  }
+</style>
+    </head>
+
+<body>      
+      <div id="header">
+            <!--<h1 style="color: black !important">Schedy</h1>-->
+            <div id="logo_out">
+              <a href="index.php" style="display: inline;"><img src="images/schedycal.png" width="300" height="77" align="center"></a>
+              <span href="index.php"><button onclick="logout()" type="button" class="btn btn-primary" id="logoutbutton" href="index.php"> Log out</button></span>
+            </div>
+            <p id="date"></p> 
+            <ul class="nav nav-pills nav-justified">
+              <li class= "headerbar"><a href="about.html">About Us</a></li>
+              <li class= "headerbar"></a>
+              </li>
+              <li class= "headerbar"><a href="index.php">Home <i class="fa fa-home"> </i> </a></li>
+              <li class= "headerbar"></li>
+              <li class= "headerbar"><a href="contact.html">Contact Us</a></li>
+            </ul>
+    </div>
+
+    <div id="content">
+      <h1 class="home-title">I am a... </h1>
+             <div id="signin" class="container">
+             <form method="post" id="signinform">
+                <p><input type='text' id='emailInput' name="email" placeholder='Email'></p>
+                <p><input type='password' id='passwordInput' name="password" placeholder='Password'></p>
+                <div class="row">
+                    <div class="col-sm-2 col-sm-offset-5">
+                        <p><button type="submit" class=" btn btn-primary" formaction="staffSignIn.php">Staff</button></p>
+                        <p><button type="submit" class=" btn btn-primary" formaction="studentSignIn.php">Student</button></p></form>
+                        <p><button class=" btn btn-primary" onclick="getAjax()">Quick Log in</button></p></form>
+                        <p id="notAmember">Not a member yet? <a href="signup.php">Sign up now!</a></p>
+                    </div>
+                </div>
+             </div>
+    </div>
+
+</body>
+
+
+</html>
