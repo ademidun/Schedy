@@ -11,6 +11,16 @@
 	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
+
+i.traffic-light{
+color: #35EA08 !important;
+}
+i.traffic-medium{
+color: #35EA08 !important;
+}
+i.traffic-heavy{
+color: #35EA08 !important;
+}
 .custom-inner:before,
 .custom-inner:after  {
 	content: '';
@@ -22,6 +32,7 @@
 	left: 0.5%;
 	z-index: -1;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
 }
 
 .custom-inner:after {
