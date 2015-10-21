@@ -4,15 +4,7 @@
 <head>
 
     <title>Schedy - Home</title>
-        
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel ="stylesheet" type ="text/css" href="Atila Style.css">
-    <link href"calendar-style.css" rel="stylesheet" media="screen">
     <style type="text/css">
   button{
     margin: 2%;
@@ -41,22 +33,8 @@
     </head>
 
 <body>      
-      <div id="header">
-            <!--<h1 style="color: black !important">Schedy</h1>-->
-            <div id="logo_out">
-              <a href="index.php" style="display: inline;"><img src="images/schedycal.png" width="300" height="77" align="center"></a>
-              <span href="index.php"><button onclick="logout()" type="button" class="btn btn-primary" id="logoutbutton" href="index.php"> Log out</button></span>
-            </div>
-            <p id="date"></p> 
-            <ul class="nav nav-pills nav-justified">
-              <li class= "headerbar"><a href="about.html">About Us</a></li>
-              <li class= "headerbar"></a>
-              </li>
-              <li class= "headerbar"><a href="index.php">Home <i class="fa fa-home"> </i> </a></li>
-              <li class= "headerbar"></li>
-              <li class= "headerbar"><a href="contact.html">Contact Us</a></li>
-            </ul>
-    </div>
+      <?php $page_title="Schedy- Home";
+            include("schedyheader.php"); ?>
 
     <div id="content">
       <h1 class="home-title">I am a... </h1>
@@ -67,8 +45,11 @@
                 <div class="row">
                     <div class="col-sm-2 col-sm-offset-5">
                         <p><button type="submit" class=" btn btn-primary" formaction="staffSignIn.php">Staff</button></p>
-                        <p><button type="submit" class=" btn btn-primary" formaction="studentSignIn.php">Student</button></p></form>
+                        <p><button type="submit" class=" btn btn-primary" formaction="studentSignIn.php">Student</button></p><br>
+                        <span id="verifyuser"> </span>
+                        </form>
                         <p><button class=" btn btn-primary" onclick="getAjax()">Quick Log in</button></p></form>
+                        <span
                         <p id="notAmember">Not a member yet? <a href="signup.php">Sign up now!</a></p>
                     </div>
                 </div>
@@ -76,6 +57,43 @@
     </div>
 
 </body>
+<script type="text/javascript">
+  
+  function getAjax(){
+    $.POST()
+    /*
+  formdata= $('form');
+  verifyspace= $('#verifyuser');
+  
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "verifyuser.php", true);
+  
+//   http.setRequestHeader("Content-type", 
+//     "application/x-www-form-urlencoded");
+// http.setRequestHeader("Content-length", params.length);
+// http.setRequestHeader("Connection", "close")
+//I fee like these above lines are redundant, looking for a faster way  
 
+  xhr.onreadystatechange= function(){//this is to keep track of the progress of my request
+    if(xhr.readystate==1){
+      verifyspace.innerHTMl="Connection established. ";
+    }
+    if(xhr.readystate==4 && xhr.status=200){
+      result=xhr.responseText;
+      verifyspace.innerHTMl=responseText;
+    }
+  }
+
+
+  xhr.send(formdata);
+*/
+  }
+</script>
 
 </html>
+
+
+
+
+
+

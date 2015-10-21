@@ -41,24 +41,24 @@
     <script type="text/javascript" src="js/jquery.calendario.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script>
-      var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
-      var offHoursRef = myFirebaseRef.child("office_hours");
-      var userid;
-      var authData = myFirebaseRef.getAuth();
-      if (authData) {
-        console.log("User " + authData.uid + " is logged in with " + authData.provider);
-        userid = authData.uid;
-      } else {
-        console.log("User is logged out");
-      }
+    //   var myFirebaseRef = new Firebase("https://schedy.firebaseio.com/");
+    //   var offHoursRef = myFirebaseRef.child("office_hours");
+    //   var userid;
+    //   var authData = myFirebaseRef.getAuth();
+    //   if (authData) {
+    //     console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    //     userid = authData.uid;
+    //   } else {
+    //     console.log("User is logged out");
+    //   }
 
-      offHoursRef.on("value", function(snapshot) {
-        console.log(snapshot.val());
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      });
+    //   offHoursRef.on("value", function(snapshot) {
+    //     console.log(snapshot.val());
+    //   }, function (errorObject) {
+    //     console.log("The read failed: " + errorObject.code);
+    //   });
 
-      var userday, userdayArr, eventStart, eventEnd, eventEndArr, attending, capacity;
+    //   var userday, userdayArr, eventStart, eventEnd, eventEndArr, attending, capacity;
 
       //gets all the office hours organized by date. Each field can be obteined by doing snapshot.val().*field*
       //we have date, start (time), end (time), course, capacity and staff id

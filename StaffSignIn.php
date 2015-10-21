@@ -20,8 +20,8 @@
 <body>
 
          <!--  Include an external header file -->
-            <?php $page_title="Sign In";
-            include("atilaheader2.php"); ?>
+            <?php $page_title="Staff";
+            include("schedyheader.php"); ?>
     
 
     <?php
@@ -51,7 +51,7 @@
         }
       }
       if ($emailcheck==0) {
-        echo "User Not Found!";
+        echo "User Not Found!, Redirecting...";
         $conn ->close();
       }
       else if ($passcheck==0) {
@@ -74,11 +74,11 @@
     <?php endif ?>
            <?php if ($passcheck>0): ?>
              <body>      
-      <div id="header">
-            <!--<h1 style="color: black !important">Schedy</h1>-->
-            <div id="logo_out">
+<!--       <div id="header">
+ -->            <!--<h1 style="color: black !important">Schedy</h1>-->
+            <!-- <div id="logo_out">
               <img class="headeritems"src="images/schedycal.png" width="300" height="77" align="center">
-              <button onclick="logout()" type="button" class="btn btn-primary" id="logoutbutton"> Log out</button>
+              <button href="index.php" type="button" class="btn btn-primary" id="logoutbutton"> Log out</button>
             </div>
             <p id="date"></p> 
             <ul class="nav nav-pills nav-justified">
@@ -89,7 +89,7 @@
               <li class="headerbar"></li>
               <li class="headerbar"><a href="contact.html">Contact Us</a></li>
             </ul>
-    </div>
+    </div> -->
     
           <div class="content-calendar">
           <h1> Staff's Schedule </h1>
@@ -147,9 +147,6 @@
     <link rel="stylesheet" type="text/css" href="calendario/css/calendar.css" />
     <link rel="stylesheet" type="text/css" href="calendario/css/custom_2.css" />
     <script>
-    function logout(){
-      window.location.replace("index.php");
-    }
 var codropsEvents = {
 
   // '09-21-2015' : '<a href="http://tympanus.net/codrops/2012/11/21/adaptive-thumbnail-pile-effect-with-automatic-grouping/">Adaptive Thumbnail Pile Effect with Automatic Grouping</a>',
