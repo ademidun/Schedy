@@ -30,8 +30,8 @@
     <link rel="stylesheet" type="text/css" href="calendario/css/custom_2.css" />
     <script src="js/modernizr.custom.63321.js"></script>
     <link rel ="stylesheet" type ="text/css" href="Atila Style.css" />
-    <link rel ="stylesheet" type ="text/css" href="calendar-style.css" />
-
+   <!--  <link rel ="stylesheet" type ="text/css" href="calendar-style.css" />
+ -->
     </head>
         <body>
           <div id="header">

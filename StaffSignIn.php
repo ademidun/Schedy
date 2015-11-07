@@ -68,7 +68,7 @@
       <?php if ($passcheck==0): ?>
       <script type="text/javascript">
       (setTimeout(function () {
-   window.location.href = "schedy.html"; //will redirect to your blog page (an ex: blog.html)
+   window.location.href = "schedy.php"; //will redirect to your blog page (an ex: blog.html)
 }, 2000)());
       </script>
     <?php endif ?>

@@ -26,7 +26,7 @@
               <li class= "headerbar" class="dropdown" ><a class="dropdown-toggle" 
               data-toggle="dropdown" href="clutter folder/Atila Tech 1.html" class= "headerbar">Technology <span class ="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li class= "headerbar"><a href="Schedy.html">Web Design</a></li>
+                    <li class= "headerbar"><a href="Schedy.php">Web Design</a></li>
                     <li class= "headerbar"><a href="atila tech 1.html">App Dev</a></li>
                     <li class= "headerbar"><a href="#">Investments</a></li> 
                     </ul>

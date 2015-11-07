@@ -29,29 +29,32 @@
   .row .btn-primary{
     margin: 0% ;
   }
-</style>
+</style> 
     </head>
 
-<body>      
-      <?php $page_title="Schedy- Home";
+<body>
+     
+      <?php $page_title="Schedy-Home";
             include("schedyheader.php"); ?>
-
     <div id="content">
+
+                
       <h1 class="home-title">I am a... </h1>
              <div id="signin" class="container">
              <form method="post" id="signinform">
                 <p><input type='text' id='emailInput' name="email" placeholder='Email'></p>
                 <p><input type='password' id='passwordInput' name="password" placeholder='Password'></p>
                 <div class="row">
-                    <div class="col-sm-2 col-sm-offset-5">
+                    <div class="col-md-2 col-md-offset-5">
                         <p><button type="submit" class=" btn btn-primary" formaction="staffSignIn.php">Staff</button></p>
                         <p><button type="submit" class=" btn btn-primary" formaction="studentSignIn.php">Student</button></p><br>
                         <span id="verifyuser"> </span>
+                        <p><button id="quickbutton"class=" btn btn-primary">Quick Log in</button></p></form>
                         </form>
-                        <p><button class=" btn btn-primary" onclick="getAjax()">Quick Log in</button></p></form>
                         <span
                         <p id="notAmember">Not a member yet? <a href="signup.php">Sign up now!</a></p>
                     </div>
+                    <div id="responsebox"></div>
                 </div>
              </div>
     </div>
@@ -59,35 +62,40 @@
 </body>
 <script type="text/javascript">
   
-  function getAjax(){
-    $.POST()
-    /*
-  formdata= $('form');
-  verifyspace= $('#verifyuser');
+  $('#quickbutton').on('click',function(){
+    var that =this;
+    var ajaxpost= $.post("verifyuser.php",$("#signinform").serialize() );
+    ajaxpost.done(function (data) {
+      var respSpace = $("#responsebox");
+      respSpace.append(data);
+    });
+    event.preventDefault();
+
+  });
+  // //   formdata= $('form');
+// //   verifyspace= $('#verifyuser');
   
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "verifyuser.php", true);
+// //   var xhr = new XMLHttpRequest();
+// //   xhr.open("POST", "verifyuser.php", true);
   
-//   http.setRequestHeader("Content-type", 
-//     "application/x-www-form-urlencoded");
-// http.setRequestHeader("Content-length", params.length);
-// http.setRequestHeader("Connection", "close")
-//I fee like these above lines are redundant, looking for a faster way  
+// // //   http.setRequestHeader("Content-type", 
+// // //     "application/x-www-form-urlencoded");
+// // // http.setRequestHeader("Content-length", params.length);
+// // // http.setRequestHeader("Connection", "close")
+// // //I fee like these above lines are redundant, looking for a faster way  
 
-  xhr.onreadystatechange= function(){//this is to keep track of the progress of my request
-    if(xhr.readystate==1){
-      verifyspace.innerHTMl="Connection established. ";
-    }
-    if(xhr.readystate==4 && xhr.status=200){
-      result=xhr.responseText;
-      verifyspace.innerHTMl=responseText;
-    }
-  }
+// //   xhr.onreadystatechange= function(){//this is to keep track of the progress of my request
+// //     if(xhr.readystate==1){
+// //       verifyspace.innerHTMl="Connection established. ";
+// //     }
+// //     if(xhr.readystate==4 && xhr.status=200){
+// //       result=xhr.responseText;
+// //       verifyspace.innerHTMl=responseText;
+// //     }
+// //   }
 
 
-  xhr.send(formdata);
-*/
-  }
+// //   xhr.send(formdata);
 </script>
 
 </html>
