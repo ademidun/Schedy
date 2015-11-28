@@ -30,6 +30,16 @@
     <link rel="stylesheet" type="text/css" href="calendario/css/custom_2.css" />
     <script src="js/modernizr.custom.63321.js"></script>
     <link rel ="stylesheet" type ="text/css" href="Atila Style.css" />
+    <link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
+    <linkk rel='stylesheet' src='jquery-ui-custom/jquery-ui.css' />
+    <script src='jquery-ui-custom/jquery-ui.js'></script>
+    <script src='fullcalendar/lib/moment.min.js'></script>
+    <script src='fullcalendar/fullcalendar.js'></script>
+    <script type='text/javascript' src='fullcalendar/gcal.js'></script>
+    <script src="jquery-modal/dist/overlay.js"></script>
+ <link rel="stylesheet" href="jquery-modal/dist/overlay.css">
+<script src="jquery-modal/dist/overlay.js"></script>
+
    <!--  <link rel ="stylesheet" type ="text/css" href="calendar-style.css" />
  -->
     </head>
@@ -38,8 +48,8 @@
           <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
             <!--<h1 style="color: black !important">Schedy</h1>-->
             <div id="logo_out">
-              <img src="images/schedycal.png" width="300" height="77" align="center">
-              <button href="index.php" type="button" class="btn btn-primary" id="logoutbutton" onclick="location.href='index.php'"> Log out</button>
+              <a href="schedy.php" style="display:inline"><img src="images/schedycal.png" width="300" height="77" align="center"></a>
+              <button href="index.php" type="button" class="btn btn-primary" id="logoutbutton" onclick="location.href='schedy.php'"> Log out</button>
               </div>
             <p id="date"></p> 
             <ul class="nav nav-pills nav-justified">

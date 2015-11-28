@@ -39,15 +39,17 @@
     <div id="content">
 
                 
-      <h1 class="home-title">I am a... </h1>
-             <div id="signin" class="container">
+      <h1 class="home-title" style="margin-top: 5px; margin-bottom: 5px">I am a... </h1>
+             <div id="signin" class="container" style="top:15%">
              <form method="post" id="signinform">
                 <p><input type='text' id='emailInput' name="email" placeholder='Email'></p>
                 <p><input type='password' id='passwordInput' name="password" placeholder='Password'></p>
                 <div class="row">
                     <div class="col-md-2 col-md-offset-5">
                         <p><button type="submit" class=" btn btn-primary" formaction="staffSignIn.php">Staff</button></p>
-                        <p><button type="submit" class=" btn btn-primary" formaction="studentSignIn.php">Student</button></p><br>
+                        <p><button type="submit" class=" btn btn-primary" formaction="staffSignIn2.php">Staff 2</button></p>
+                        <p><button type="submit" class=" btn btn-primary" formaction="studentSignIn.php" style="
+    margin-bottom: 0px" >Student</button></p><br>
                         <span id="verifyuser"> </span>
                         <p><button id="quickbutton"class=" btn btn-primary">Quick Log in</button></p></form>
                         </form>
