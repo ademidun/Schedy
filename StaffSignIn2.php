@@ -111,7 +111,13 @@
                       
                   
     <script>
-
+      var date, d, m, y;
+          $(document).ready(function(){
+             date = new Date();
+             d = date.getDate();
+             m = date.getMonth();
+             y = date.getFullYear();
+          })
           var gcalbutton = '<input type="button" id="gcalbutton" value="Import Google Calendar"class="btn btn-primary calendar-btn2" style="background-color:#33B5E5;border-color:#33B5E5;margin:2%" ></input>';
           $('.staff-form').after(gcalbutton);
           $('#gcalbutton').click(function(){
@@ -135,6 +141,7 @@
                 className: 'nice-event'
             },
             {
+              //events must be an array, in order to work
             events:[{
             title: 'Event1',
             start: '2015-12-04'
@@ -151,26 +158,131 @@
               });
             }
             );
+//this is the calendar which will be loaded if user automatically creates
+//their own events
 
+//it will be nice if we can implement the click handler as an external javascript
           $('#customCal').click(function(){
             alert('Your new office hour was registered. Thank you!');
               $(document).ready(function()  {
 
                 // page is now ready, initialize the calendar...
 
-                $('#calendar').fullCalendar({
+                var calendar = $('#calendar').fullCalendar({
                 // put your options and callbacks here
-                dayClick: function() {
-                  alert('a day has been clicked!');
+                  editable: true, 
+                  header: {  
+                  left: 'prev,next today',  
+                  center: 'title',
+                  right: 'month,agendaWeek,agendaDay'
                   },
-                  events:
+                  eventSources:[
                           {
-                          url: '/myfeed.php', // use the `url` property
+                          url: 'events.php', // use the `url` property
                           color: 'yellow',    // an option!
                           textColor: 'black'  // an option!
-                          }
-                  
-                })
+                          },
+                          {
+                        //events must be an array, in order to work
+                      events:[{
+                      title: 'Event1',
+                      start: '2015-12-04'
+                      }
+                      ]
+                    }],
+                          
+                  // Convert the allDay from string to boolean
+                  /* event rendered value is a function which will be triggered
+                  when a new event is being created "whenever you create a new event,
+                  do this" */
+                  eventRender: function(event, element, view) {
+                    //the docs for event object explicity tell us
+                    //not to use all day as a string so we must convert it to bool
+                    if (event.allDay === 'true') {
+                    event.allDay = true;
+                    } else {
+                    event.allDay = false;
+                    }
+    	               },
+                    selectable: true,
+                     selectHelper: true,
+                     select: function(start, end, allDay) {
+                     var title = prompt('Event Title:');
+                     var url = prompt('Type Event url, if exits:');
+                     if (title) {
+                     var start = calendar.fullCalendar.formatDate(start, "yyyy-MM-dd HH:mm:ss");
+                     var end = calendar.fullCalendar.formatDate(end, "yyyy-MM-dd HH:mm:ss");
+                     $.ajax({
+                     url: 'add_events.php',
+                     data: 'title='+ title+'&start='+ start +'&end='+ end +'&url='+ url ,
+                     type: "POST",
+                     success: function(json) {
+                     alert('Added Successfully');
+                     }
+                     });
+                     calendar.fullCalendar('renderEvent',
+                     {
+                     title: title,
+                     start: start,
+                     end: end,
+                     allDay: allDay
+                     },
+                     true // make the event "stick"
+                     );
+                     }
+                    calendar.fullCalendar('unselect');
+                    },
+                    editable: true,
+   
+                    eventDrop: function(event, delta) {
+                       var 
+                    start = $calendar.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
+                       var 
+                    end = $calendar.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+                       
+                    $.ajax({
+                       
+                    url: 'update_events.php',
+                       
+                    data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+                       
+                    type: "POST",
+                       
+                    success: function(json) {
+                        
+                    alert("Updated Successfully");
+                       
+                    }
+                       
+                    });
+                       
+                    },
+                    eventResize: function(event) {
+                       var 
+                    start = $calendar.fullCalendar.formatDate(event.start, "yyyy-MM-dd HH:mm:ss");
+                       var 
+                    end = $calendar.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+                       
+                    $.ajax({
+                        
+                    url: 'update_events.php',
+                        
+                    data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+                        
+                    type: "POST",
+                        
+                    success: function(json) {
+                         
+                    alert("Updated Successfully");
+                        
+                    }
+                       
+                    });
+                    
+                    }
+                    
+                }
+                );
               });
             }
             );

@@ -35,8 +35,4 @@ var_dump($result);
 
  // sending the encoded result to success page
  echo json_encode($result->fetchAll(PDO::FETCH_ASSOC));
-var_dump($json);
-var_dump($request);
-var_dump($result);
-var_dump($json);
 ?>
