@@ -163,11 +163,13 @@
                 dayClick: function() {
                   alert('a day has been clicked!');
                   },
-        events: [{
-            title  : 'Event 3',
-            start  : '2015-12-09T12:30:00',
-            allDay : false // will make the time show
-        }],
+                  events:
+                          {
+                          url: '/myfeed.php', // use the `url` property
+                          color: 'yellow',    // an option!
+                          textColor: 'black'  // an option!
+                          }
+                  
                 })
               });
             }
