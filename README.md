@@ -1,7 +1,8 @@
 
 # Atila
 Conglomerate
-Those who Know, KNOW!
 
-A Calendar to simplify how you spend your time.
+A Calendar webapp that allows you to schedule appointments with others simply and efficiently.
+Demo:
+http://ademidun.github.io/Schedy
 
