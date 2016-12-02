@@ -1,10 +1,10 @@
 <?php
 
 /* Values received via ajax */
-$id = $_GET['id'];
-$title = $_GET['title'];
-$start = $_GET['start'];
-$end = $_GET['end'];
+$id = $_POST['id'];
+$title = $_POST['title'];
+$start = $_POST['start'];
+$end = $_POST['end'];
 
 // connection to the database
 try {

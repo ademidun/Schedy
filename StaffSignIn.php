@@ -92,6 +92,7 @@
     </div> -->
     
           <div class="content-calendar">
+             <!--     <?php //echo"<h1> {$username}'s Schedule </h1> " ?> -->
           <h1> Staff's Schedule </h1>
           </div> <!--   Calendario start -->
                   <div id="custom-inner" class="custom-inner hide">

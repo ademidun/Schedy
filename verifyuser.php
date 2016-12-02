@@ -116,7 +116,10 @@ while ($row=mysqli_fetch_assoc($result)){
     <link rel="stylesheet" type="text/css" href="calendario/css/custom_2.css" />
     <script>
 var codropsEvents = {
-
+  //Nov 5 2015
+  //how can we get this object to accept a variable as a key value pair
+  //we can make some sort of function/ i.e modify codrops event which will accept a JSON object array as an arguement
+  //then use that JSON object to populate the key-value pairs 
   // '09-21-2015' : '<a href="http://tympanus.net/codrops/2012/11/21/adaptive-thumbnail-pile-effect-with-automatic-grouping/">Adaptive Thumbnail Pile Effect with Automatic Grouping</a>',
   // '09-25-2015' : '<span>Christmas Day</span>',
   // '09-31-2015' : '<span>New Year\'s Eve</span>'
